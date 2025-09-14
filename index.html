@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/256/9422/9422795.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Pro: Dashboard de RRHH con Streamlit y Certificación</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Prism.js CDN (para resaltar sintaxis) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Titillium+Web:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Estilos Personalizados -->
+    <link rel="stylesheet" href="style.css">
+       <!-- Librería para el efecto de Confeti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+        <!-- ===== BARRA DE NAVEGACIÓN FIJA ===== -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-chart-bar me-2"></i> Dashboard RRHH Pro
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#construccion"><i class="fas fa-rocket me-1"></i> ¿Qué Construiremos?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tecnologias"><i class="fas fa-tools me-1"></i> Tecnologías</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#fundamentos"><i class="fas fa-graduation-cap me-1"></i> Fundamentos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#salarios"><i class="fas fa-dollar-sign me-1"></i> Salarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#paso-a-paso"><i class="fas fa-code-branch me-1"></i> Paso a Paso</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#despliegue"><i class="fas fa-cloud-upload-alt me-1"></i> Despliegue</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#quiz-final"><i class="fas fa-award me-1"></i> Quiz y Certificado</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- ===== SECCIÓN DE BIENVENIDA (HERO) - VERSIÓN COMBINADA ===== -->
+<header class="hero">
+    <div class="container">
+        <!-- Parte Original del Banner -->
+        <h1 class="display-3">📊 Crea un Dashboard de RRHH con Python</h1>
+        <p class="lead fs-4 mt-3">Te guiaré paso a paso para que construyas una aplicación web interactiva y profesional con <span class="kw kw-streamlit">Streamlit</span>, <span class="kw kw-pandas">Pandas</span> y <span class="kw kw-plotly">Plotly</span>.</p>
+
+        <!-- Parte del Día del Programador (Integrada) -->
+        <div class="programmer-day-banner mt-5">
+            <h4 class="neon-latido">
+  <i class="fas fa-calendar-alt me-2"></i> ¡Feliz Día del Programador!
+</h4>
+
+<p class="fs-5 col-md-10 mx-auto marco-ola">
+  Este manual es mi forma de celebrar el <strong class="resaltado">🎉 Día Internacional del Programador</strong>. 
+  Esta fecha no es aleatoria; celebramos el día número <strong class="valor256">🔢 256</strong> del año (13 de Septiembre). 
+  ¿Por qué <strong class="valor256">256</strong>? Porque es el número de valores que se pueden representar con 
+  <strong class="byte">💾 8 bits</strong> (un <strong class="byte">🧠 byte</strong>), el pilar fundamental de la computación. 
+  Es un saludo geek a la unidad de información que hace posible todo lo que construimos.
+</p>
+
+
+            <div class="code-snippet-animated">
+                <p id="line1" class="typing-line"><span class="comment"># 256 es 2 elevado a la potencia 8</span></p>
+                <p id="line2" class="typing-line"><span class="keyword">print</span>(f<span class="keyword">"Valores en 1 byte:</span> {<span class="number">2**8</span>}") <span class="comment"># Output: 256</span></p>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+              
+
+<section id="quien-soy" class="section text-center bg-dark rounded p-5 my-5">
+    
+    <!-- Título de la Sección -->
+    <h2><i class="fas fa-user-astronaut me-2"></i> ¿Quién Soy?</h2>
+    
+    <!-- Contenedor de la Foto con Animación -->
+    <div class="profile-pic-container mt-4">
+        <img src="https://avatars.githubusercontent.com/u/38921558?v=4" alt="Foto de Juancito Peña" class="profile-pic-neon">
+    </div>
+
+    <!-- Mini-Bio -->
+    <h3 class="mt-2" style="color: #76ff03;">Juancito Peña</h3>
+<p class="lead col-md-8 mx-auto" style="font-weight: 300;">
+    🛠️ <strong>Ingeniero en Sistemas</strong> 💻
+    <strong>Desarrollador Full Stack</strong> especializado en tecnologías como 
+    <span style="color:#58D68D;">HTML</span>, <span style="color:#58D68D;">CSS</span>, 
+    <span style="color:#58D68D;">JavaScript</span>, <span style="color:#58D68D;">React</span>, 
+    <span style="color:#58D68D;">C#</span>, <span style="color:#58D68D;">ASP.Net</span>, 
+    <span style="color:#58D68D;">Python</span>, <span style="color:#58D68D;">PHP</span>, 
+    <span style="color:#58D68D;">WordPress</span> y <span style="color:#58D68D;">Git</span>; 
+    
+    📊 <strong>Analista de Datos</strong> con dominio en 
+    <span style="color:#F5B041;">Excel</span>, <span style="color:#F5B041;">SQL</span>, 
+    <span style="color:#F5B041;">Power BI</span> y <span style="color:#F5B041;">Python</span>, 
+    transformando información en decisiones visuales; 
+    
+    🧠 <strong>Dominio experto de los principales LLM</strong> como 
+    <span style="color:#8E44AD;">GPT</span>, 
+    <span style="color:#3498DB;">Claude</span>, 
+    <span style="color:#1ABC9C;">Gemini</span>, 
+    <span style="color:#E74C3C;">Grok</span>, 
+    <span style="color:#2ECC71;">DeepSeek</span>, 
+    <span style="color:#D35400;">Qwen</span>, 
+    aplicados a la construcción, automatización y educación con IA; 
+    
+    👨‍🏫 <strong>Docente universitario</strong> e instructor técnico, comprometido con la formación de
+    profesionales a través de recursos visuales, prácticos y motivadores.
+</p>
+
+
+
+
+    <!-- Botones de Redes Sociales -->
+    <div class="social-buttons-neon mt-5">
+        <a href="https://www.linkedin.com/in/juancitopeña/" target="_blank" class="linkedin">
+            <i class="fab fa-linkedin-in me-2"></i> LinkedIn
+        </a>
+        <a href="https://www.youtube.com/channel/UCSob-3E5z4IHtMF5B4bN-FA" target="_blank" class="youtube">
+            <i class="fab fa-youtube me-2"></i> YouTube
+        </a>
+        <a href="https://github.com/JUANCITOPENA" target="_blank" class="github">
+            <i class="fab fa-github me-2"></i> GitHub
+        </a>
+    </div>
+
+</section>
+
+
+    <main class="container">
+<!-- ===== SECCIÓN: ¿QUÉ CONSTRUIREMOS? ===== -->
+<section id="construccion" class="section text-center py-5">
+  <div class="container">
+    <h2><i class="fas fa-rocket"></i> ¿Qué Construiremos?</h2>
+    <p class="lead col-md-8 mx-auto mt-3">
+      En este manual, transformaremos un simple archivo de <strong style="color:#F5B041;">Excel</strong> en una poderosa herramienta de visualización de datos. 
+      Es como tener una lupa mágica 🔎 que nos permite ver, filtrar y entender la información de los empleados de una empresa de forma dinámica y atractiva.
+    </p>
+    <p class="fs-5 col-md-10 mx-auto mt-4">
+      Aprenderás a construir un <strong style="color:#5DADE2;">Dashboard interactivo</strong> con <strong style="color:#20c997;">Python</strong>, 
+      <strong style="color:#76ff03;">Streamlit</strong> y <strong style="color:#ffeb3b;">Plotly</strong>, integrando filtros, métricas clave, visualizaciones impactantes y una experiencia de usuario profesional. 
+      Este proyecto no solo te enseña a programar, sino a comunicar datos con claridad, estética y propósito.
+    </p>
+    <p class="fs-5 col-md-10 mx-auto mt-3">
+      Lo que construimos aquí puede ser aplicado en áreas como <strong style="color:#58D68D;">Recursos Humanos</strong>, 
+      <strong style="color:#58D68D;">Educación</strong>, <strong style="color:#58D68D;">Finanzas</strong> o cualquier sector donde los datos cuenten historias. 
+      Aprenderás a convertir información en decisiones, y decisiones en impacto.
+    </p>
+    <p class="fs-6 col-md-10 mx-auto mt-4" style="color:#ffffff;">
+      💡 Este contenido fue creado con pasión educativa. Si te resulta útil, <strong style="color:#76ff03;">compártelo</strong>. 
+      Difundir conocimiento es sembrar oportunidades. Cada vez que lo compartes, ayudas a que otros también aprendan, crezcan y se empoderen. 
+      Eso es <strong style="color:#20c997;">democratizar la educación</strong> y expandir el poder del aprendizaje visual. 
+      ¡Haz que el saber circule! 🌍📚
+    </p>
+  </div>
+</section>
+
+        <!-- ===== SECCIÓN: TECNOLOGÍAS ===== -->
+        <section id="tecnologias" class="section">
+            <h2><i class="fas fa-tools"></i>Tecnologías: Nuestro Cinturón de Herramientas 🛠️</h2>
+            <div class="row g-4 text-center">
+                <div class="col-lg col-md-6"><div class="card p-4 h-100"><i class="fab fa-python tech-icon mb-3"></i><h4>Python</h4><p>El cerebro 🧠 de todo.</p></div></div>
+                <div class="col-lg col-md-6"><div class="card p-4 h-100"><i class="fas fa-rocket tech-icon mb-3"></i><h4>Streamlit</h4><p>La varita mágica ✨ para crear la app web.</p></div></div>
+                <div class="col-lg col-md-6"><div class="card p-4 h-100"><i class="fas fa-file-excel tech-icon mb-3"></i><h4>Pandas</h4><p>El experto 🧐 en organizar y limpiar datos.</p></div></div>
+                <div class="col-lg col-md-6"><div class="card p-4 h-100"><i class="fas fa-chart-pie tech-icon mb-3"></i><h4>Plotly</h4><p>El artista 🎨 que dibuja los gráficos.</p></div></div>
+                <div class="col-lg col-md-6"><div class="card p-4 h-100"><i class="fab fa-css3-alt tech-icon mb-3"></i><h4>HTML/CSS</h4><p>Los estilistas 💅 que le dan el look & feel.</p></div></div>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN: FUNDAMENTOS ===== -->
+        <section  id="fundamentos" class="section">
+            <h2><i class="fas fa-graduation-cap"></i>Fundamentos: ¿Por qué aprender esto?</h2>
+            <p>Imagina que los datos son como un montón de piezas de LEGO. Aprender a analizarlos es como aprender a construir cualquier cosa que imagines con esas piezas. Es una habilidad súper demandada que te abre las puertas a trabajos increíbles y bien pagados.</p>
+            <div class="accordion" id="techAccordion">
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">🐍 Python: El Cerebro de la Operación</button></h2><div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#techAccordion"><div class="accordion-body"><strong>Definición:</strong> <span class="kw kw-python">Python</span> es un lenguaje de programación. Piensa en él como el idioma que usaremos para darle instrucciones a la computadora. Es famoso por ser muy claro y fácil de leer, ¡casi como leer inglés!<br><strong>¿Por qué aprenderlo?:</strong> Es el lenguaje #1 para Ciencia de Datos, Machine Learning e Inteligencia Artificial. Su comunidad ha creado miles de "librerías" (cajas de herramientas pre-hechas) que nos ahorran muchísimo trabajo. <br><strong>Ejemplo:</strong> <code>total_empleados = df['nombre'].count()</code>. Esto es como decirle a Python: "Oye, del archivo de datos, cuenta cuántos nombres hay y dime el total".</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">🎈 Streamlit: La Magia de Crear Apps Web</button></h2><div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#techAccordion"><div class="accordion-body"><strong>Definición:</strong> <span class="kw kw-streamlit">Streamlit</span> es una librería de Python que hace que crear aplicaciones web sea increíblemente fácil y rápido. Es como tener una varita mágica que convierte tu código de análisis en una página web interactiva.<br><strong>¿Por qué aprenderlo?:</strong> Te permite compartir tus análisis y gráficos con cualquier persona (tu jefe, tus amigos, un cliente) sin que ellos necesiten saber programar. ¡Simplemente les pasas un link! <br><strong>Ejemplo:</strong> <code>st.slider("Rango de Edad", 18, 65)</code>. Con esta simple línea, Streamlit crea un control deslizante en la web para que el usuario pueda filtrar por edad.</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">🐼 Pandas: El Maestro de los Datos</button></h2><div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#techAccordion"><div class="accordion-body"><strong>Definición:</strong> <span class="kw kw-pandas">Pandas</span> es la librería para trabajar con datos tabulares (piensa en tablas de Excel o de bases de datos). Su herramienta principal es el <span class="kw kw-pandas">DataFrame</span>, que es como una hoja de cálculo súper poderosa que controlas con código.<br><strong>¿Por qué aprenderlo?:</strong> Es la navaja suiza del analista de datos. La usarás para TODO: leer archivos, limpiar datos con errores, filtrar, agrupar, y hacer cálculos. <br><strong>Ejemplo:</strong> <code>df_filtrado = df[df['departamento'] == 'Ventas']</code>. Aquí le decimos a Pandas: "Del DataFrame completo, dame solo las filas donde el departamento sea 'Ventas'".</div></div></div>
+                 <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">📈 Plotly: Visualizaciones que Cuentan Historias</button></h2><div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#techAccordion"><div class="accordion-body"><strong>Definición:</strong> <span class="kw kw-plotly">Plotly</span> es una librería para crear gráficos interactivos y hermosos. A diferencia de una imagen estática, los gráficos de Plotly te permiten pasar el mouse para ver detalles, hacer zoom, y explorar la información.<br><strong>¿Por qué aprenderlo?:</strong> Un buen gráfico vale más que mil palabras. Plotly te ayuda a contar la historia que esconden tus datos de una forma visual y atractiva, permitiendo que otros descubran patrones por sí mismos. <br><strong>Ejemplo:</strong> <code>fig = px.histogram(df, x="departamento")</code>. Con esto, Plotly crea un gráfico de barras que cuenta cuántos empleados hay en cada departamento.</div></div></div>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN: SALARIOS ===== -->
+        <section id="salarios" class="section">
+            <h2><i class="fas fa-dollar-sign"></i>Perfiles y Salarios en el Mundo de los Datos 💰</h2>
+            <p>Dominar estas herramientas te convierte en un profesional muy valioso. Aquí tienes una idea de los roles y salarios (en USD anuales) a los que puedes aspirar. <br><small><em>(Estimaciones basadas en fuentes como Glassdoor, LinkedIn Salary, etc. y pueden variar)</em></small></p>
+            <div class="table-responsive">
+                <table class="table table-bordered table-dark table-striped">
+                    <thead class="thead-light"><tr><th><i class="fas fa-user-tie"></i> Perfil Profesional</th><th><i class="fas fa-tasks"></i> Responsabilidades Clave</th><th><i class="fas fa-baby"></i> Junior</th><th><i class="fas fa-user-graduate"></i> Mid-Level</th><th><i class="fas fa-crown"></i> Senior</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Data Analyst</strong></td><td>Limpieza, análisis y creación de reportes.</td><td>$55k - $75k</td><td>$75k - $100k</td><td>$100k - $130k+</td></tr>
+                        <tr><td><strong>BI Developer</strong></td><td>Creación de dashboards (Tableau, PowerBI, <span class="kw kw-streamlit">Streamlit</span>).</td><td>$65k - $85k</td><td>$85k - $115k</td><td>$115k - $150k+</td></tr>
+                        <tr><td><strong>Visualization Specialist</strong></td><td>Diseño avanzado de gráficos interactivos y storytelling.</td><td>$70k - $90k</td><td>$90k - $120k</td><td>$120k - $160k+</td></tr>
+                        <tr><td><strong>Data Scientist</strong></td><td>Análisis, modelado predictivo y machine learning.</td><td>$90k - $120k</td><td>$120k - $150k</td><td>$150k - $200k+</td></tr>
+                        <tr><td><strong>Data Engineer</strong></td><td>Construcción de pipelines de datos y arquitectura.</td><td>$85k - $110k</td><td>$110k - $140k</td><td>$140k - $190k+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN: PASO A PASO ===== -->
+        <section id="paso-a-paso" class="section">
+            <h2><i class="fas fa-code-branch"></i>Paso a Paso: ¡A Construir el Dashboard!</h2>
+            <p class="lead">Ok, ¡basta de teoría! Es hora de ensuciarse las manos con código. Sigue esta guía detallada para crear tu obra maestra.</p>
+            
+            <hr class="my-5">
+
+            <h3 class="mt-4"><span class="highlight">Fase 1:</span> 🛠️ Configuración del Entorno de Desarrollo</h3>
+            <p>Esta es la base de nuestra casa. Un buen cimiento asegura que todo lo demás se construya sin problemas.</p>
+
+            <div class="accordion" id="setupAccordion">
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSetup1">Paso 1. Instalar Python 🐍</button></h2>
+                    <div id="collapseSetup1" class="accordion-collapse collapse" data-bs-parent="#setupAccordion"><div class="accordion-body">
+                        <p>Si aún no tienes <span class="kw kw-python">Python</span>, es como querer cocinar sin cocina. ¡Vamos a instalarlo!</p>
+                        <ol>
+                            <li>Visita la <a href="https://www.python.org/downloads/" target="_blank">página oficial de descargas de Python <i class="fas fa-external-link-alt"></i></a>.</li>
+                            <li>Descarga la última versión estable (la que no diga "beta" o "rc").</li>
+                            <li>Ejecuta el instalador. <strong>🛑 ¡ESTE PASO ES CRÍTICO! 🛑</strong> En la primera ventana, marca la casilla que dice <span class="kw-general">"Add Python to PATH"</span>. Esto es como decirle a tu computadora: "Oye, quiero poder usar Python desde cualquier lugar, no solo desde su carpeta".</li>
+                            <li>Para comprobar que todo salió bien, abre una terminal (CMD, PowerShell o Terminal) y escribe el comando mágico:
+<pre><code class="language-bash">python --version</code></pre>
+                            Si ves un número de versión, ¡lo lograste! ✅</li>
+                        </ol>
+                    </div></div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSetup2">Paso 2. Instalar VS Code 📝</button></h2>
+                    <div id="collapseSetup2" class="accordion-collapse collapse" data-bs-parent="#setupAccordion"><div class="accordion-body">
+                        <p>Visual Studio Code (o <span class="kw-general">VS Code</span>) es nuestro editor de código. Es como un cuaderno súper inteligente que nos ayuda a escribir código con colores, sugerencias y herramientas.</p>
+                        <ol>
+                            <li>Descárgalo desde su <a href="https://code.visualstudio.com/" target="_blank">sitio web oficial <i class="fas fa-external-link-alt"></i></a>.</li>
+                            <li>Instálalo (puedes aceptar todas las opciones por defecto).</li>
+                            <li>Ábrelo y ve a la pestaña de Extensiones (el icono de 4 cubos 🧩 en la barra lateral).</li>
+                            <li>Busca e instala la extensión oficial de <span class="kw-python">Python</span> de Microsoft. Esto le dará superpoderes a tu editor para entender Python.</li>
+                        </ol>
+                    </div></div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSetup3">Paso 3. Crear el Proyecto y Entorno Virtual 🌐</button></h2>
+                    <div id="collapseSetup3" class="accordion-collapse collapse" data-bs-parent="#setupAccordion"><div class="accordion-body">
+                        <p>Un <span class="kw-general">entorno virtual</span> es como crear una caja de juguetes separada para cada proyecto. Así, las piezas (librerías) de un proyecto no se mezclan con las de otro. ¡Es una práctica súper importante para ser un programador ordenado!</p>
+                        <ol>
+                            <li>Crea una carpeta nueva para tu proyecto. Por ejemplo, llámala <span class="kw-path">dashboard-rrhh</span>.</li>
+                            <li>En VS Code, abre esa carpeta (Archivo > Abrir Carpeta...).</li>
+                            <li>Abre una nueva terminal dentro de VS Code (Terminal > Nueva Terminal).</li>
+                            <li>Crea el entorno virtual con este comando. Esto creará una carpeta llamada <span class="kw-path">env</span> dentro de tu proyecto. Es tu "caja de juguetes".
+<pre><code class="language-bash">python -m venv env</code></pre>
+                            </li>
+                            <li><strong>¡Activa el entorno!</strong>  активируйте среду! Este es el paso clave. Es como abrir la caja de juguetes para empezar a usarla.
+                                <p><strong>En Windows (PowerShell):</strong></p>
+<pre><code class="language-powershell">.\env\Scripts\Activate.ps1</code></pre>
+                                <p><strong>En Mac/Linux:</strong></p>
+<pre><code class="language-bash">source env/bin/activate</code></pre>
+                                <p>Sabrás que funcionó porque verás <span class="kw-general">(env)</span> al principio de la línea de tu terminal.</p>
+                            </li>
+                        </ol>
+                    </div></div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSetup4">Paso 4. Instalar las Librerías 📚</button></h2>
+                    <div id="collapseSetup4" class="accordion-collapse collapse" data-bs-parent="#setupAccordion"><div class="accordion-body">
+                        <p>Con nuestra "caja de juguetes" (<span class="kw-general">env</span>) abierta, es hora de meterle las herramientas que necesitamos. Estas librerías solo existirán dentro de este entorno.</p>
+                        <p>Ejecuta este comando para instalar todo de un solo golpe:</p>
+<pre><code class="language-bash">pip install streamlit pandas plotly openpyxl</code></pre>
+                        <div class="alert alert-info mt-3"><i class="fas fa-info-circle me-2"></i><strong>¿Qué es <span class="kw-general">pip</span>?</strong> Es el gestor de paquetes de Python. Imagina que es un repartidor de Amazon que va y te trae las librerías que le pides. <br><strong>¿Y <span class="kw-general">openpyxl</span>?</strong> Es una librería que <span class="kw-pandas">Pandas</span> usa por debajo para poder hablar con los archivos de Excel (`.xlsx`).</div>
+                    </div></div>
+                </div>
+
+            </div>
+
+            <hr class="my-5">
+
+            <h3 class="mt-4"><span class="highlight">Fase 2:</span> 💾 Análisis y Preparación de los Datos</h3>
+            <p>Nuestros datos son el ingrediente principal. Crea un archivo llamado <span class="kw-path">RRHH.xlsx</span> en la raíz de tu proyecto con una estructura similar a esta. Puedes inventarte los datos.</p>
+            <div class="table-responsive">
+                <table class="table table-bordered table-dark table-striped"><thead><tr><th>nombre_completo</th><th>genero</th><th>departamento</th><th>cargo</th><th>estado</th><th>fecha_ingreso</th><th>fecha_salida</th><th>fecha_nacimiento</th><th>sueldo</th></tr></thead><tbody><tr><td>Juan Pérez</td><td>Masculino</td><td>Ventas</td><td>Analista</td><td>Activo</td><td>15/03/2020</td><td></td><td>10/05/1990</td><td>$2500</td></tr><tr><td>Ana Gómez</td><td>Femenino</td><td>IT</td><td>Desarrollador</td><td>Activo</td><td>01/02/2018</td><td></td><td>20/08/1992</td><td>$3500</td></tr></tbody></table>
+            </div>
+            <p class="mt-3"><strong>🕵️‍♂️ Inspeccionando los Datos:</strong></p>
+            <ul>
+                <li>✅ <strong>Datos Categóricos:</strong> <span class="kw-general">genero</span>, <span class="kw-general">departamento</span>, <span class="kw-general">cargo</span>. Son como etiquetas, perfectas para filtrar.</li>
+                <li>✅ <strong>Datos Numéricos:</strong> <span class="kw-general">sueldo</span>. Ideal para hacer cálculos matemáticos.</li>
+                <li>✅ <strong>Datos de Fecha:</strong> <span class="kw-general">fecha_ingreso</span>, <span class="kw-general">fecha_nacimiento</span>. Nos permitirán calcular edad y antigüedad.</li>
+                <li>❌ <strong>Posibles Problemas:</strong> El <span class="kw-general">sueldo</span> tiene un símbolo de  dólar, lo cual significa que técnicament 
+                     y es texto, no un número. ¡No podemos sumar texto! Las fechas son texto también. ¡Nuestro código deberá ser un buen limpiador de datos!</li>
+            </ul>
+
+            <hr class="my-5">
+
+            <h3 class="mt-4"><span class="highlight">Fase 3:</span> 👨‍💻 Construcción del Script <span class="kw-path">rrhh_dashboard.py</span></h3>
+            <p>¡La hora de la verdad! Crea este archivo en tu proyecto y vamos a darle vida, bloque por bloque.</p>
+            
+<h4 class="mt-4" style="text-align: justify;">🧩 <span style="color:#2E86C1;">Bloque 1:</span> <strong>Importaciones y Configuración de Página</strong></h4>
+
+<p style="text-align: justify;">
+🔧 En esta primera sección damos el paso inicial para construir nuestro <strong><span style="color:#28B463;">dashboard profesional</span></strong>. 
+Importamos las <strong><span style="color:#AF7AC5;">librerías esenciales</span></strong> que nos permitirán trabajar con datos, crear <strong><span style="color:#F39C12;">gráficos interactivos</span></strong> 
+y estructurar la interfaz. Estas herramientas son la <strong><span style="color:#1ABC9C;">base técnica</span></strong> que potencia la funcionalidad del proyecto.
+</p>
+
+<p style="text-align: justify;">
+🖥️ Luego, configuramos la página para que se despliegue en modo <strong><span style="color:#E74C3C;">“wide”</span></strong>, lo que significa que ocupará 
+<strong><span style="color:#3498DB;">todo el ancho disponible</span></strong> de la pantalla. Esta decisión no es solo estética: permite que las visualizaciones respiren, 
+que los elementos se distribuyan con <strong><span style="color:#F1C40F;">elegancia</span></strong> y que el usuario disfrute de una experiencia visual más cómoda y envolvente.
+</p>
+
+<p style="text-align: justify;">
+🎯 Además, asignamos un <strong><span style="color:#9B59B6;">título claro</span></strong> y un <strong><span style="color:#E67E22;">ícono representativo</span></strong> al dashboard, 
+reforzando la <strong><span style="color:#2ECC71;">identidad del proyecto</span></strong> desde el primer momento. Esta configuración inicial marca el tono 
+<strong><span style="color:#34495E;">profesional y visual</span></strong> que mantendremos en todo el desarrollo.
+</p>
+
+            <pre><code class="language-python">
+# 1. Importamos las librerías que instalamos
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+import numpy as np
+
+# 2. Configuramos la página
+st.set_page_config(
+    page_title="Dashboard de Recursos Humanos",
+    page_icon="📊",
+    layout="wide" # wide = usar todo el ancho
+)
+            </code></pre>
+            
+            <h4 class="mt-4">Bloque 2: Cabecera Personalizada y Enlaces de Autor</h4>
+<p style="text-align: justify;">
+    🎨 En este <strong><span style="color:#5DADE2;">Bloque 2</span></strong>, damos vida e identidad al dashboard
+    mediante una <strong><span style="color:#58D68D;">cabecera personalizada</span></strong>.
+    Utilizamos <strong><span style="color:#F5B041;">HTML</span></strong> y <strong><span
+            style="color:#F8C471;">CSS</span></strong> para construir una sección visualmente atractiva que presenta al
+    autor con estilo profesional,
+    incluyendo su fotografía y enlaces directos a sus redes sociales.
+</p>
+
+<p style="text-align: justify;">
+    🔗 Los <strong><span style="color:#85C1E9;">enlaces interactivos</span></strong> a <strong><span
+            style="color:#3498DB;">LinkedIn</span></strong>, <strong><span
+            style="color:#EC7063;">YouTube</span></strong> y <strong><span style="color:#F7DC6F;">GitHub</span></strong>
+    se integran con íconos reales que reaccionan al pasar el cursor,
+    aportando dinamismo y profesionalismo. Esta sección no solo embellece el dashboard, sino que también permite al
+    usuario conectar directamente con el autor,
+    reforzando la <strong><span style="color:#76D7C4;">credibilidad</span></strong> y el <strong><span
+            style="color:#AED6F1;">impacto educativo</span></strong> del proyecto.
+</p>
+
+<p style="text-align: justify;">
+    📌 La estructura se divide en dos columnas: una para la <strong><span style="color:#82E0AA;">imagen del
+            autor</span></strong> con efectos visuales envolventes, y otra para el <strong><span
+            style="color:#F9E79F;">título central</span></strong> del dashboard
+    acompañado del <strong><span style="color:#BB8FCE;">subtítulo con enlaces</span></strong>. Este diseño modular
+    permite una presentación clara, moderna y alineada con los estándares visuales más exigentes.
+</p>
+
+
+           
+            <pre><code class="language-python">
+# --- DATOS DEL AUTOR Y ENLACES ---
+FOTO_URL = "https://avatars.githubusercontent.com/u/38921558?v=4"
+LINKEDIN_URL = "https://www.linkedin.com/in/juancitopeña/"
+GITHUB_URL = "https://github.com/JUANCITOPENA"
+YOUTUBE_URL = "https://www.youtube.com/channel/UCSob-3E5z4IHtMF5B4bN-FA"
+
+# --- URLs DE LOS ICONOS ---
+LINKEDIN_ICON_URL = "https://images.icon-icons.com/805/PNG/512/linkedin_icon-icons.com_65929.png"
+GITHUB_ICON_URL = "https://cdn-icons-png.flaticon.com/512/25/25231.png"
+YOUTUBE_ICON_URL = "https://images.icon-icons.com/1211/PNG/512/1491580651-yumminkysocialmedia28_83061.png"
+
+# --- COMPONENTE HTML PARA LA IMAGEN (SOLO VISUAL) ---
+componente_imagen_autor = f"""
+&lt;style&gt;
+    .avatar-image {{
+        width: 100px; height: 100px; border-radius: 50%;
+        border: 4px solid #76ff03;
+        box-shadow: 0 0 15px #76ff03, 0 0 25px #ffeb3b, inset 0 0 5px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease-in-out;
+    }}
+    .avatar-image:hover {{
+        transform: scale(1.1);
+    }}
+&lt;/style&gt;
+&lt;div style="display: flex; justify-content: center; align-items: center; padding-top: 10px;"&gt;
+    &lt;img src="{FOTO_URL}" class="avatar-image"&gt;
+&lt;/div&gt;
+"""
+
+# --- COMPONENTE HTML PARA EL SUBTÍTULO CON ICONOS REALES ---
+componente_subtitulo = f"""
+&lt;style&gt;
+    .subtitle-container {{
+        text-align: center;
+        margin-top: -15px;
+    }}
+    .subtitle-container h4 {{
+        color: #76ff03; /* Color verde lumínico */
+        font-weight: 300; /* Fuente más fina */
+    }}
+    .social-icon {{
+        width: 28px; /* Tamaño del icono */
+        height: 28px;
+        vertical-align: middle; /* Alineación con el texto */
+        margin: 0 8px; /* Espaciado entre iconos */
+        transition: transform 0.2s ease-in-out;
+    }}
+    .social-icon:hover {{
+        transform: scale(1.3); /* Efecto al pasar el ratón */
+    }}
+&lt;/style&gt;
+&lt;div class="subtitle-container"&gt;
+    &lt;h4&gt;
+        Creado por: Ing. Juancito Peña con Python Streamlit y CSS
+        &lt;a href="{LINKEDIN_URL}" target="_blank"&gt;
+            &lt;img src="{LINKEDIN_ICON_URL}" class="social-icon"&gt;
+        &lt;/a&gt;
+        &lt;a href="{YOUTUBE_URL}" target="_blank"&gt;
+            &lt;img src="{YOUTUBE_ICON_URL}" class="social-icon"&gt;
+        &lt;/a&gt;
+        &lt;a href="{GITHUB_URL}" target="_blank"&gt;
+            &lt;img src="{GITHUB_ICON_URL}" class="social-icon" style="filter: invert(1);"&gt;
+        &lt;/a&gt;
+    &lt;/h4&gt;
+&lt;/div&gt;
+"""
+
+# --- ESTRUCTURA DE LA CABECERA ---
+col1, col2 = st.columns([1, 5], gap="medium")
+with col1:
+    st.markdown(componente_imagen_autor, unsafe_allow_html=True)
+with col2:
+    st.markdown("&lt;h1 style='text-align: center; padding-top: 25px;'&gt;Dashboard de Recursos Humanos 📊&lt;/h1&gt;", unsafe_allow_html=True)
+    st.markdown(componente_subtitulo, unsafe_allow_html=True)
+
+st.markdown("---")
+            </code></pre>
+
+
+
+
+
+            
+            
+            <h4 class="mt-4">Bloque 3: Carga y Limpieza de Datos (La Función Mágica)</h4>
+      <p style="text-align: justify;">
+🧠 En este <strong><span style="color:#5DADE2;">Bloque 3</span></strong>, presentamos la función que actúa como el <strong><span style="color:#58D68D;">corazón del dashboard</span></strong>.  
+Su misión es clara: <strong><span style="color:#F5B041;">leer el archivo Excel</span></strong>, <strong><span style="color:#F8C471;">limpiar los datos</span></strong> y dejarlos listos para el análisis.  
+Este proceso garantiza que la información esté libre de errores, con nombres de columnas estandarizados y formatos coherentes para su uso en visualizaciones.
+</p>
+
+<p style="text-align: justify;">
+⚡ Para optimizar el rendimiento, usamos el decorador <strong><span style="color:#85C1E9;">@st.cache_data</span></strong>, una herramienta inteligente de Streamlit que detecta si el archivo ha cambiado.  
+Si no hay modificaciones, evita volver a cargar y procesar los datos, lo que convierte a la app en una experiencia <strong><span style="color:#76D7C4;">ágil</span></strong>, <strong><span style="color:#F7DC6F;">eficiente</span></strong> y <strong><span style="color:#AED6F1;">ultrarrápida</span></strong>.
+</p>
+
+<p style="text-align: justify;">
+🔍 Además, la función realiza tareas clave como convertir fechas, calcular edades y antigüedad laboral, y transformar valores monetarios en formato numérico.  
+Todo esto se hace de forma robusta y controlada, asegurando que el análisis posterior se base en datos <strong><span style="color:#82E0AA;">limpios</span></strong>, <strong><span style="color:#F9E79F;">coherentes</span></strong> y <strong><span style="color:#BB8FCE;">listos para visualizar</span></strong>.
+</p>
+
+<!-- 🔹 Línea superior divisoria -->
+<hr style="border: none; height: 2px; background: linear-gradient(to right, #5DADE2, #58D68D); margin-top: 30px;">
+
+<!-- 🔽 Botón de descarga con descripción -->
+<div style="text-align: center; padding: 20px;">
+  <p style="color:#F7DC6F; font-size: 18px; text-align: justify;">
+    📁 Este archivo contiene el <strong><span style="color:#58D68D;">set de datos original</span></strong> del área de <strong><span style="color:#5DADE2;">Recursos Humanos</span></strong>, incluyendo información sobre sueldos, bonificaciones, fechas clave y datos personales anonimizados.  
+    Es la base para todas las visualizaciones y cálculos del dashboard. ¡Descárgalo para explorar, practicar o personalizar tu propio análisis! 🔍📊
+  </p>
+
+  <a href="RRHH.xlsx" download style="text-decoration: none;">
+    <button style="background-color:#5DADE2; color:#fff; border:none; padding:12px 24px; font-size:16px; border-radius:8px; cursor:pointer; box-shadow: 0 0 10px #5DADE2; transition: all 0.3s ease;">
+      📥 Descargar Datos RRHH.xlsx
+    </button>
+  </a>
+</div>
+
+<!-- 🔹 Línea inferior divisoria -->
+<hr style="border: none; height: 2px; background: linear-gradient(to right, #58D68D, #5DADE2); margin-bottom: 30px;">
+
+         
+         
+            <pre><code class="language-python">
+# Usamos un decorador para que la función se ejecute solo una vez si los datos no cambian
+@st.cache_data
+def cargar_datos(ruta_archivo: str) -> pd.DataFrame:
+    try:
+        df = pd.read_excel(ruta_archivo)
+    except FileNotFoundError:
+        st.error(f"Error: No se encontró el archivo '{ruta_archivo}'.")
+        return pd.DataFrame()
+        
+    df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
+    df = df.rename(columns={'bonificación': 'bonificacion', 'edad_en_años': 'edad_calculada', 'nombre_completo': 'nombre_completo'})
+    
+    for col in ["sueldo", "bonificacion", "total_ingresos"]:
+        if col in df.columns and df[col].dtype == 'object':
+             df[col] = df[col].replace(r'[\$,]', '', regex=True).astype(float)
+             
+    for col in ['fecha_nacimiento', 'fecha_ingreso', 'fecha_salida']:
+        if col in df.columns:
+            df[col] = pd.to_datetime(df[col], errors='coerce')
+            
+    hoy = pd.Timestamp.now()
+    if 'fecha_nacimiento' in df.columns: 
+        df['edad_en_años'] = (hoy - df['fecha_nacimiento']).dt.days / 365.25
+    else: 
+        df['edad_en_años'] = np.nan
+        
+    if 'fecha_ingreso' in df.columns: 
+        df["antiguedad_num"] = ((hoy - df["fecha_ingreso"]).dt.days / 365.25).fillna(0)
+    else: 
+        df["antiguedad_num"] = 0
+        
+    return df
+
+df_original = cargar_datos("RRHH.xlsx")
+
+if df_original.empty: 
+    st.stop()
+            </code></pre>
+
+  <section>
+  <h4 class="mt-4" style="text-align: justify;">🎛️ <span style="color:#5DADE2;">Bloque 4:</span> <strong>Filtros Interactivos en la Barra Lateral</strong></h4>
+
+  <p style="text-align: justify;">
+    En este <strong><span style="color:#5DADE2;">bloque</span></strong>, damos al usuario el control total sobre los datos mediante una <strong><span style="color:#58D68D;">barra lateral interactiva</span></strong>.  
+    Aquí es donde <strong><span style="color:#F5B041;">Streamlit</span></strong> brilla: desplegamos filtros dinámicos como <strong><span style="color:#F8C471;">selectores</span></strong>, <strong><span style="color:#F8C471;">multiselects</span></strong> y <strong><span style="color:#F8C471;">sliders</span></strong> que permiten segmentar la información por departamento, género, cargo, edad y antigüedad.
+  </p>
+
+  <p style="text-align: justify;">
+    🔄 También incluimos un botón para <strong><span style="color:#EC7063;">restablecer los filtros</span></strong> al instante, lo que facilita la exploración sin fricciones.  
+    Cada selección se guarda en la sesión, permitiendo una experiencia fluida y personalizada. Esta sección convierte al dashboard en una herramienta <strong><span style="color:#76D7C4;">viva</span></strong>, <strong><span style="color:#F7DC6F;">flexible</span></strong> y <strong><span style="color:#AED6F1;">centrada en el usuario</span></strong>.
+  </p>
+
+  <pre><code class="language-python">
+with st.sidebar:
+    st.header("🔍 Filtros")
+    if st.button("♻️ Borrar / Restablecer Filtros"): 
+        st.session_state.clear()
+        st.rerun()
+        
+    default_deps = df_original["departamento"].dropna().unique().tolist()
+    departamentos = st.multiselect("Departamento", options=default_deps, default=st.session_state.get("departamentos", default_deps))
+    st.session_state.departamentos = departamentos
+    
+    default_generos = df_original["genero"].dropna().unique().tolist()
+    generos = st.multiselect("Género", options=default_generos, default=st.session_state.get("generos", default_generos))
+    st.session_state.generos = generos
+    
+    default_cargos = df_original["cargo"].dropna().unique().tolist()
+    cargos = st.multiselect("Cargo", options=default_cargos, default=st.session_state.get("cargos", default_cargos))
+    st.session_state.cargos = cargos
+    
+    edad_min, edad_max = int(df_original["edad_en_años"].min()), int(df_original["edad_en_años"].max())
+    rango_edad = st.slider("Rango de Edad (años)", min_value=edad_min, max_value=edad_max, value=st.session_state.get("rango_edad", (edad_min, edad_max)))
+    st.session_state.rango_edad = rango_edad
+    
+    antiguedad_min, antiguedad_max = int(df_original["antiguedad_num"].min()), int(df_original["antiguedad_num"].max())
+    rango_antiguedad = st.slider("Rango de Antigüedad (años)", min_value=antiguedad_min, max_value=antiguedad_max, value=st.session_state.get("rango_antiguedad", (antiguedad_min, antiguedad_max)))
+    st.session_state.rango_antiguedad = rango_antiguedad
+  </code></pre>
+</section>
+
+
+<section>
+  <!-- ===================== -->
+  <!-- 📊 Bloque 5.01: KPIs y Filtrado de Datos -->
+  <!-- ===================== -->
+  <h4 class="mt-4" style="text-align: justify;">📊 <span style="color:#5DADE2;">Bloque 5.01:</span> <strong>KPIs y Filtrado de Datos</strong></h4>
+
+  <p style="text-align: justify;">
+    Esta sección del dashboard tiene como objetivo central el <strong>filtrado de datos</strong>.  
+    A través de los filtros configurados (departamentos, género, cargos, rango de edad y antigüedad), logramos mostrar solo la información relevante para el análisis.  
+    Esto permite personalizar la vista y concentrarse únicamente en el subconjunto de empleados que interesa al usuario.
+  </p>
+
+  <p style="text-align: justify;">
+    Una vez aplicado el filtrado, se calculan los <strong>KPIs</strong> más importantes: número total de empleados, activos, inactivos, sueldo total, edad promedio, cantidad de departamentos y la tasa de rotación.  
+    Estos indicadores, además de ser intuitivos, ofrecen una <strong>visión rápida del estado actual</strong> de la organización.  
+    Se presentan en métricas visuales que permiten la comparación inmediata entre diferentes dimensiones de los datos.
+  </p>
+
+  <p style="text-align: justify;">
+    El resultado es un bloque fundamental, ya que combina <strong>filtrado dinámico</strong> con <strong>métricas clave</strong>, convirtiéndose en la base para los análisis posteriores del dashboard.  
+    Gracias a estos cálculos iniciales, los usuarios pueden tomar decisiones mejor fundamentadas sobre el personal de la empresa.
+  </p>
+
+  <pre><code class="language-python">
+# =====================
+# 📊 BLOQUE 5.01: KPIs y Filtrado de Datos
+# =====================
+
+# --- Filtrado del DataFrame con .query() ---
+query_parts = [
+    "departamento in @departamentos",
+    "genero in @generos",
+    "cargo in @cargos",
+    "edad_en_años >= @rango_edad[0] and edad_en_años <= @rango_edad[1]",
+    "antiguedad_num >= @rango_antiguedad[0] and antiguedad_num <= @rango_antiguedad[1]"
+]
+df_filtrado = df_original.query(" and ".join(query_parts))
+
+# Verificar si hay datos después del filtrado
+if df_filtrado.empty:
+    st.warning("⚠️ No hay datos que coincidan con los filtros seleccionados.")
+else:
+    # --- KPIs ---
+    # Se ajusta el estilo de las métricas (fuentes y tamaño)
+    st.markdown("""<style>[data-testid="stMetricValue"]{font-size: 24px;}[data-testid="stMetricLabel"]{font-size: 18px;}</style>""", unsafe_allow_html=True)
+    
+    # Se dividen los KPIs en columnas para mostrarlos en línea
+    kpi_cols = st.columns(7)
+    
+    # Cálculo de KPIs principales
+    total_empleados, activos = len(df_filtrado), df_filtrado["estado"].str.lower().eq("activo").sum()
+    inactivos = total_empleados - activos
+    tasa_rotacion = (inactivos / total_empleados * 100) if total_empleados > 0 else 0
+    
+    # Mostrar métricas
+    kpi_cols[0].metric("👥 Total Empleados", f"{total_empleados:,}")
+    kpi_cols[1].metric("✅ Activos", f"{activos:,}")
+    kpi_cols[2].metric("❌ Inactivos", f"{inactivos:,}")
+    kpi_cols[3].metric("🏢 Departamentos", f"{df_filtrado['departamento'].nunique():,}")
+    kpi_cols[4].metric("💰 Sueldo Total", f"${df_filtrado['sueldo'].sum():,.0f}")
+    kpi_cols[5].metric("🎂 Edad Promedio", f"{df_filtrado['edad_en_años'].mean():.1f} años")
+    kpi_cols[6].metric("🔁 Tasa Rotación", f"{tasa_rotacion:.1f}%")
+    
+    st.markdown("---")
+  </code></pre>
+</section>
+
+
+<section>
+  <!-- ===================== -->
+  <!-- 📊 Bloque 5.02: Gráficos Interactivos y Rotación -->
+  <!-- ===================== -->
+  <h4 class="mt-4" style="text-align: justify;">📊 <span style="color:#5DADE2;">Bloque 5.02:</span> <strong>Gráficos Interactivos y Rotación</strong></h4>
+
+  <p style="text-align: justify;">
+    En este bloque se despliegan los <strong>gráficos interactivos</strong>, que representan visualmente los datos filtrados.  
+    Utilizando la librería <strong>Plotly</strong>, se generan histogramas, gráficos de caja, gráficos de pastel y violín.  
+    Estas visualizaciones permiten detectar <strong>patrones y distribuciones</strong> en dimensiones clave como departamento, género, edad y sueldo.
+  </p>
+
+  <p style="text-align: justify;">
+    Además, se incluye un <strong>análisis de rotación</strong>, dividiéndose en dos perspectivas: rotación anual y rotación por departamento.  
+    Esto ayuda a identificar no solo tendencias históricas, sino también áreas específicas dentro de la organización que presentan mayor salida de personal.  
+    Dicho análisis es vital para las estrategias de retención de talento.
+  </p>
+
+  <p style="text-align: justify;">
+    Gracias a estos gráficos, el dashboard no solo muestra <strong>números estáticos</strong>, sino que se transforma en una herramienta <strong>interactiva</strong> para comprender mejor la dinámica laboral de la empresa.  
+    Esto facilita que los usuarios realicen comparaciones y detecten posibles problemáticas en la gestión de recursos humanos.
+  </p>
+
+  <pre><code class="language-python">
+# =====================
+# 📊 BLOQUE 5.02: Gráficos Interactivos y Rotación
+# =====================
+
+# --- Gráficos Interactivos ---
+col_graf1, col_graf2 = st.columns(2)
+
+# Gráficos de distribución por departamento y sueldo
+with col_graf1:
+    st.plotly_chart(px.histogram(df_filtrado, x="departamento", color="estado", title="Distribución por Departamento y Estado"), use_container_width=True)
+    st.plotly_chart(px.box(df_filtrado, x="departamento", y="sueldo", title="Distribución de Sueldo por Departamento"), use_container_width=True)
+
+# Gráficos de género y edad
+with col_graf2:
+    st.plotly_chart(px.pie(df_filtrado, names="genero", title="Distribución por Género", hole=0.4), use_container_width=True)
+    st.plotly_chart(px.violin(df_filtrado, y="edad_en_años", x="departamento", box=True, title="Distribución de Edad por Departamento"), use_container_width=True)
+
+# --- Sección de Análisis de Rotación ---
+st.subheader("🔁 Análisis de Rotación")
+
+# Función: cálculo de rotación anual
+def calcular_rotacion_anual(df: pd.DataFrame) -> pd.DataFrame:
+    df_salidas = df.dropna(subset=['fecha_salida']).copy()
+    if df_salidas.empty: return pd.DataFrame()
+    df_salidas['año_salida'] = df_salidas['fecha_salida'].dt.year
+    separaciones_anuales = df_salidas.groupby('año_salida').size()
+
+    def calc_avg_employees(year):
+        # Se calcula el promedio de empleados al inicio y al final del año
+        start_of_year = df[(df['fecha_ingreso'].dt.year < year) & ((df['fecha_salida'].dt.year >= year) | (df['fecha_salida'].isnull()))].shape[0]
+        end_of_year = df[df['fecha_ingreso'].dt.year <= year].shape[0] - df[df['fecha_salida'].dt.year <= year].shape[0]
+        return (start_of_year + end_of_year) / 2 if (start_of_year + end_of_year) > 0 else 1
+
+    promedio_empleados_anual = {year: calc_avg_employees(year) for year in separaciones_anuales.index}
+    rotacion_df = pd.DataFrame({'separaciones': separaciones_anuales, 'promedio_empleados': pd.Series(promedio_empleados_anual)})
+    rotacion_df['tasa_rotacion'] = (rotacion_df['separaciones'] / rotacion_df['promedio_empleados']) * 100
+    return rotacion_df.reset_index().rename(columns={'index': 'Año'})
+
+# Función: cálculo de rotación por departamento
+def calcular_rotacion_departamento(df: pd.DataFrame) -> pd.DataFrame:
+    rotacion = df.groupby('departamento')['estado'].apply(lambda x: (x.str.lower() == 'inactivo').sum() / len(x) * 100 if len(x) > 0 else 0)
+    return rotacion.reset_index(name='Tasa de Rotación (%)').sort_values('Tasa de Rotación (%)', ascending=False)
+
+# Mostrar gráficos de rotación
+col_rot1, col_rot2 = st.columns(2)
+with col_rot1:
+    rotacion_depto_df = calcular_rotacion_departamento(df_filtrado)
+    if not rotacion_depto_df.empty: 
+        st.plotly_chart(px.bar(rotacion_depto_df, x='departamento', y='Tasa de Rotación (%)', title='Tasa de Rotación por Departamento (%)'), use_container_width=True)
+    else: 
+        st.info("No hay datos para mostrar la rotación por departamento.")
+with col_rot2:
+    rotacion_anual_df = calcular_rotacion_anual(df_original)
+    if not rotacion_anual_df.empty: 
+        st.plotly_chart(px.line(rotacion_anual_df, x='Año', y='tasa_rotacion', title='Tasa de Rotación Anual Histórica (%)', markers=True), use_container_width=True)
+    else: 
+        st.info("No hay datos históricos de salidas para calcular la rotación anual.")
+  </code></pre>
+</section>
+
+
+<section>
+  <!-- ===================== -->
+  <!-- 📊 Bloque 5.03: Tabla Detallada de Empleados -->
+  <!-- ===================== -->
+  <h4 class="mt-4" style="text-align: justify;">📊 <span style="color:#5DADE2;">Bloque 5.03:</span> <strong>Tabla Detallada de Empleados</strong></h4>
+
+  <p style="text-align: justify;">
+    En esta última parte del bloque se despliega una <strong>tabla detallada</strong> con la información de cada empleado.  
+    La tabla incluye datos como nombre, género, departamento, cargo, estado, fechas de ingreso y salida, antigüedad calculada, edad y sueldo.  
+    Además, se utilizan <strong>emojis</strong> para representar de manera visual el estado de cada trabajador.
+  </p>
+
+  <p style="text-align: justify;">
+    Uno de los aspectos más destacados es el cálculo automático de la <strong>antigüedad</strong> de cada empleado, expresada en años y meses.  
+    Esto brinda un nivel adicional de detalle que facilita entender la permanencia del personal en la organización.  
+    Asimismo, se aplican formatos personalizados para las columnas de fechas, edades y sueldos.
+  </p>
+
+  <p style="text-align: justify;">
+    En conclusión, esta tabla convierte al dashboard en una <strong>herramienta integral</strong>.  
+    Permite tanto la visión general a través de KPIs y gráficos, como el análisis minucioso con información individualizada de cada trabajador.  
+    Esto potencia la capacidad de tomar decisiones informadas en el área de gestión de talento.
+  </p>
+
+  <pre><code class="language-python">
+# =====================
+# 📊 BLOQUE 5.03: Tabla Detallada de Empleados
+# =====================
+
+st.subheader("📑 Detalle de Empleados")
+
+# Función para calcular la antigüedad de un empleado
+def calcular_antiguedad_texto(row):
+    final_date = row["fecha_salida"] if pd.notna(row["fecha_salida"]) else pd.Timestamp.now()
+    if pd.notna(row["fecha_ingreso"]):
+        delta = final_date - row["fecha_ingreso"]
+        años, dias_restantes = divmod(delta.days, 365)
+        meses, _ = divmod(dias_restantes, 30)
+        return f"{años} años, {meses} meses"
+    return "N/A"
+
+# Crear una copia de los datos y añadir columnas calculadas
+df_tabla = df_filtrado.copy()
+df_tabla["antigüedad"] = df_tabla.apply(calcular_antiguedad_texto, axis=1)
+df_tabla["estado_emoji"] = df_tabla["estado"].apply(lambda x: "🟢 Activo" if str(x).lower() == "activo" else "🔴 Inactivo")
+
+# Definir las columnas que se mostrarán en la tabla
+columnas_a_mostrar = {
+    'nombre_completo': 'Nombre', 'genero': 'Género', 'departamento': 'Departamento', 
+    'cargo': 'Cargo', 'estado_emoji': 'Estado', 'fecha_ingreso': 'Ingreso', 
+    'fecha_salida': 'Salida', 'antigüedad': 'Antigüedad', 'edad_en_años': 'Edad', 'sueldo': 'Sueldo'
+}
+
+# Renombrar y preparar los datos
+df_display = df_tabla[list(columnas_a_mostrar.keys())].rename(columns=columnas_a_mostrar)
+
+# Mostrar la tabla en Streamlit con configuraciones personalizadas
+st.dataframe(
+    df_display,
+    use_container_width=True,
+    column_config={
+        "Ingreso": st.column_config.DateColumn("Ingreso", format="DD/MM/YYYY"),
+        "Salida": st.column_config.DateColumn("Salida", format="DD/MM/YYYY"),
+        "Edad": st.column_config.NumberColumn("Edad", format="%d años"),
+        "Sueldo": st.column_config.NumberColumn("Sueldo", format="$ S/%.2f")
+    }
+)
+  </code></pre>
+</section>
+
+
+
+        </section>
+
+        <!-- ===== SECCIÓN DESPLIEGUE EN LA NUBE (RESTAURADA) ===== -->
+        <section id="despliegue" class="section">
+            <h2 class="text-center"><i class="fas fa-cloud-upload-alt"></i>Fase Final: Despliegue en la Nube ☁️</h2>
+            <p class="lead text-center col-md-10 mx-auto">¡Felicidades! Has construido un dashboard funcional. Pero, ¿de qué sirve si solo vive en tu computadora? ¡Vamos a compartirlo con el mundo! Desplegaremos tu aplicación en <span class="kw-streamlit">Streamlit Community Cloud</span>, un servicio <strong>gratuito</strong>.</p>
+            <hr class="my-5">
+            <h3 class="mt-4"><span class="highlight">Paso 1:</span> El Archivo Mágico: <span class="kw-path">requirements.txt</span> ✨</h3>
+            <p>Necesitamos decirle a la "computadora en la nube" de Streamlit qué herramientas (librerías) necesita instalar. Eso se hace con este archivo.</p>
+            <ol>
+                <li>Abre la terminal en VS Code, asegurándote de que tu entorno virtual <span class="kw-general">(env)</span> esté activado.</li>
+                <li>Ejecuta este comando. "Congela" (<span class="kw-general">freeze</span>) una lista de las librerías de tu entorno y la guarda en el archivo.</li>
+            </ol>
+            <pre><code class="language-bash">pip freeze > requirements.txt</code></pre>
+            <p>Verás un nuevo archivo en tu proyecto. Su contenido será algo así:</p>
+            <pre><code class="language-text"># El contenido puede variar, pero verás tus librerías principales
+pandas==2.3.2
+plotly==6.3.0
+numpy==2.3.3
+streamlit==1.41.0
+openpyxl==3.1.5
+python-dotenv==1.1.1
+</code></pre>
+            <div class="alert alert-danger mt-2"><i class="fas fa-exclamation-triangle me-2"></i><strong>CRÍTICO:</strong> Sin este archivo, tu app mostrará un error en la nube. ¡No lo olvides!</div>
+            <hr class="my-5">
+            <h3 class="mt-4"><span class="highlight">Paso 2:</span> Sube tu Proyecto a GitHub 🐙</h3>
+            <p>Streamlit Cloud es amigo de GitHub. Necesitas que tu proyecto viva en un repositorio de GitHub para que Streamlit pueda encontrarlo.</p>
+            <ol>
+                <li><strong>Crea una cuenta en <a href="https://github.com/" target="_blank">GitHub</a></strong> si no tienes una.</li>
+                <li><strong>Crea un nuevo repositorio.</strong> Haz clic en "New" o ve a <a href="https://github.com/new" target="_blank">github.com/new</a>.</li>
+                <li>Dale un nombre (ej: <span class="kw-path">dashboard-rrhh-streamlit</span>), asegúrate de que sea <strong>Público</strong> y haz clic en "Create repository".</li>
+                <li><strong>Sube tus archivos.</strong> En la página de tu nuevo repositorio, busca un enlace que dice <strong>"uploading an existing file"</strong>. Arrastra y suelta tus <strong>3 archivos</strong>: <span class="kw-path">rrhh_dashboard.py</span>, <span class="kw-path">RRHH.xlsx</span> y <span class="kw-path">requirements.txt</span>.</li>
+                <li>Guarda los cambios haciendo clic en "Commit changes".</li>
+            </ol>
+            <hr class="my-5">
+            <h3 class="mt-4"><span class="highlight">Paso 3:</span> ¡El Despliegue Final en Streamlit Cloud! 🚀</h3>
+            <p>Con tu código en GitHub, esto es pan comido.</p>
+            <ol class="list-group list-group-flush">
+                <li class="list-group-item bg-transparent"><strong>1. Crea tu cuenta:</strong> Ve a <a href="https://share.streamlit.io/signup" target="_blank">share.streamlit.io/signup</a> y regístrate con tu cuenta de GitHub.</li>
+                <li class="list-group-item bg-transparent"><strong>2. Inicia un Nuevo Despliegue:</strong> Dentro de tu panel, haz clic en el botón azul <strong>"+ New app"</strong>.</li>
+                <li class="list-group-item bg-transparent"><strong>3. Configura tu App:</strong> Rellena el formulario:
+                    <ul class="list-unstyled mt-3 ps-4">
+                        <li>✅ <strong>Repository:</strong> Elige el repositorio que acabas de crear.</li>
+                        <li>✅ <strong>Branch:</strong> Déjalo en <span class="kw-general">main</span>.</li>
+                        <li>✅ <strong>Main file path:</strong> Escribe el nombre de tu script: <span class="kw-path">rrhh_dashboard.py</span>.</li>
+                        <li>✅ <strong>App URL:</strong> ¡Dale un nombre corto y genial a tu app!</li>
+                    </ul>
+                </li>
+                <li class="list-group-item bg-transparent"><strong>4. ¡Desplegar!:</strong> Haz clic en el botón <strong>"Deploy!"</strong>.</li>
+            </ol>
+            <p class="mt-4">Verás una pantalla de instalación. Streamlit leerá tu <span class="kw-path">requirements.txt</span>, instalará todo y ejecutará tu script. ¡En unos minutos, tu dashboard estará vivo y online para que lo compartas con quien quieras!</p>
+        </section>
+
+<!-- 🔹 Línea superior divisoria -->
+<hr style="border: none; height: 2px; background: linear-gradient(to right, #5DADE2, #58D68D); margin-top: 40px;">
+
+<section>
+  <h4 class="mt-4" style="text-align: justify;">🧠 <span style="color:#5DADE2;">Sección Final:</span> <strong>Descarga del Código Completo para Práctica y Corrección</strong></h4>
+
+  <p style="text-align: justify; color:#F7DC6F; font-size: 18px;">
+    🧩 Aquí tienes el <strong><span style="color:#58D68D;">código completo del dashboard</span></strong> que hemos construido paso a paso.  
+    Este archivo incluye todos los bloques: importaciones, configuración visual, filtros interactivos, KPIs, gráficos, análisis de rotación y tabla detallada.  
+    Puedes usarlo para <strong><span style="color:#F5B041;">practicar</span></strong>, <strong><span style="color:#F8C471;">personalizar</span></strong> o <strong><span style="color:#EC7063;">corregir cualquier detalle</span></strong> según tus necesidades educativas o profesionales.
+  </p>
+
+  <p style="text-align: justify; color:#AED6F1; font-size: 18px;">
+    Este recurso está diseñado para ayudarte a dominar Streamlit, visualización de datos y lógica de dashboards en un entorno real.  
+    ¡Descárgalo, explora cada línea y conviértelo en tu versión premium! 🚀📊
+  </p>
+
+  <div style="text-align: center; padding: 20px;">
+    <a href="rrhh_dashboard.py" download style="text-decoration: none;">
+      <button style="background-color:#5DADE2; color:#fff; border:none; padding:12px 24px; font-size:16px; border-radius:8px; cursor:pointer; box-shadow: 0 0 10px #5DADE2; transition: all 0.3s ease;">
+        📥 Descargar Código Completo (.py)
+      </button>
+    </a>
+  </div>
+</section>
+
+<!-- 🔹 Línea inferior divisoria -->
+<hr style="border: none; height: 2px; background: linear-gradient(to right, #58D68D, #5DADE2); margin-bottom: 40px;">
+
+
+        <!-- ===== SECCIÓN CONCLUSIÓN (RESTAURADA) ===== -->
+        <section class="section">
+            <h2><i class="fas fa-flag-checkered"></i>Conclusión y Próximos Pasos</h2>
+            <p class="lead">¡Lo lograste! Has recorrido el camino completo desde un archivo de Excel hasta una aplicación web interactiva. Has aprendido habilidades increíblemente valiosas:</p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-transparent"><i class="fas fa-check-circle me-2 text-success"></i><span class="highlight">Limpiar y procesar datos</span> con <span class="kw kw-pandas">Pandas</span>.</li>
+                <li class="list-group-item bg-transparent"><i class="fas fa-check-circle me-2 text-success"></i><span class="highlight">Construir una UI interactiva</span> con <span class="kw kw-streamlit">Streamlit</span>.</li>
+                <li class="list-group-item bg-transparent"><i class="fas fa-check-circle me-2 text-success"></i><span class="highlight">Crear gráficos dinámicos</span> con <span class="kw kw-plotly">Plotly</span>.</li>
+                <li class="list-group-item bg-transparent"><i class="fas fa-check-circle me-2 text-success"></i><span class="highlight">Desplegar tu trabajo</span> para que todo el mundo lo vea.</li>
+            </ul>
+            <p class="mt-4">Este es un gran paso en tu carrera. Ahora tienes un proyecto sólido para tu portafolio. ¿Qué sigue?</p>
+        </section>
+
+        <!-- ===== NUEVA SECCIÓN: RETOS Y CONSEJOS ===== -->
+        <section class="section bg-dark rounded p-5">
+            <h2 class="text-center"><i class="fas fa-lightbulb"></i>Retos, Consejos y Frases Inspiradoras</h2>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h4>🚀 Retos para ir más allá</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-angle-right text-success"></i> <strong>Añade más gráficos:</strong> ¿Puedes calcular la distribución de antigüedad? ¿O un gráfico de dispersión de edad vs. sueldo?</li>
+                        <li><i class="fas fa-angle-right text-success"></i> <strong>Más filtros:</strong> Agrega un filtro por estado de empleado (Activo/Inactivo).</li>
+                        <li><i class="fas fa-angle-right text-success"></i> <strong>Pestañas:</strong> Usa <span class="kw-streamlit">st.tabs()</span> para organizar tu dashboard en diferentes secciones (ej: "General", "Análisis de Sueldos").</li>
+                        <li><i class="fas fa-angle-right text-success"></i> <strong>Sube tu propio Excel:</strong> Usa <span class="kw-streamlit">st.file_uploader()</span> para permitir que el usuario suba su propio archivo de datos.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>💡 Consejos de Oro</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-star text-warning"></i> <strong>La curiosidad es tu superpoder:</strong> Siempre pregúntate "¿Qué más puedo descubrir en estos datos?".</li>
+                        <li><i class="fas fa-star text-warning"></i> <strong>Aprende SQL:</strong> Es el lenguaje de las bases de datos. Python + SQL es una combinación invencible.</li>
+                        <li><i class="fas fa-star text-warning"></i> <strong>Comunica, no solo muestres:</strong> Un dashboard no es solo un conjunto de gráficos, es una historia. Asegúrate de que la tuya se entienda.</li>
+                        <li><i class="fas fa-star text-warning"></i> <strong>Crea un portafolio:</strong> Proyectos como este son tu mejor carta de presentación. ¡Colecciónalos!</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-5">
+            <h3 class="text-center">Frases para el Camino</h3>
+            <div class="row text-center mt-4">
+                <div class="col-md-4">
+                    <blockquote class="blockquote">"El código es como el humor. Cuando tienes que explicarlo, es malo."</blockquote>
+                    <footer class="blockquote-footer">Cory House</footer>
+                </div>
+                <div class="col-md-4">
+                    <blockquote class="blockquote">"Torturar los datos el tiempo suficiente y confesarán cualquier cosa."</blockquote>
+                    <footer class="blockquote-footer">Ronald Coase</footer>
+                </div>
+                <div class="col-md-4">
+                    <blockquote class="blockquote">"Medir el progreso en programación por líneas de código es como medir el progreso en la construcción de aviones por su peso."</blockquote>
+                    <footer class="blockquote-footer">Bill Gates</footer>
+                </div>
+            </div>
+        </section>
+
+      <!-- ===== SECCIÓN FINAL: QUIZ Y CERTIFICADO (CORREGIDA) ===== -->
+<section id="quiz-final" class="section">
+
+    <!-- Este DIV ahora tiene únicamente el ID "main-content" que el script necesita para funcionar -->
+    <div id="main-content">
+        <section class="section bg-dark rounded p-5">
+            <h2 class="text-center"><i class="fas fa-award"></i>¡Pon a Prueba tus Conocimientos y Obtén tu Certificado!</h2>
+            <div id="quiz-start-screen" class="text-center">
+                <p class="lead">Demuestra tus habilidades con este quiz. Tienes <strong>15 minutos</strong> para responder <strong>30 preguntas</strong>. Necesitas un <strong>80% de aciertos</strong> para aprobar.</p>
+                <button id="start-quiz-btn" class="btn btn-primary btn-lg mt-3">🚀 ¡Comenzar el Quiz! 🚀</button>
+            </div>
+            
+            <div id="quiz-container" class="d-none">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 id="question-counter"></h4>
+                    <div id="timer" class="fw-bold">15:00</div>
+                </div>
+                <p id="question-text" class="question mb-4"></p>
+                <div id="answers-container" class="list-group"></div>
+                <button id="next-question-btn" class="btn btn-secondary mt-4 float-end d-none">Siguiente &rarr;</button>
+            </div>
+
+            <div id="quiz-results-screen" class="d-none text-center">
+                <h3 id="result-title"></h3>
+                <p id="result-message" class="fs-4"></p>
+                <div id="certificate-form-container" class="d-none col-md-8 mx-auto mt-4">
+                    <h5>¡Felicidades! Ingresa tu nombre completo para el certificado:</h5>
+                    <div class="input-group mb-3">
+                        <input type="text" id="cert-name-input" class="form-control" placeholder="Nombre Completo" required>
+                    </div>
+                    <div id="download-buttons-container" class="d-none">
+                        <p>¡Tu certificado está listo! Descárgalo en tu formato preferido:</p>
+                        <button id="download-png-btn" class="btn btn-success"><i class="fas fa-image me-2"></i>Descargar PNG</button>
+                        <button id="download-pdf-btn" class="btn btn-danger"><i class="fas fa-file-pdf me-2"></i>Descargar PDF</button>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button id="review-attempt-btn" class="btn btn-info"><i class="fas fa-search me-2"></i>Revisar mis Respuestas</button>
+                    <button id="retry-quiz-btn" class="btn btn-secondary"><i class="fas fa-redo me-2"></i>Reintentar Quiz</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-history"></i>Historial de Intentos</h2>
+            <div id="history-container">
+                <p id="no-history-msg">Aún no has completado ningún intento.</p>
+                <table id="history-table" class="table table-dark table-striped d-none">
+                    <thead><tr><th>Fecha</th><th>Puntuación</th><th>Resultado</th><th>Acciones</th></tr></thead>
+                    <tbody id="history-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- La sección de revisión es un elemento hermano, que el script mostrará u ocultará según sea necesario -->
+    <section id="quiz-review-screen" class="section d-none">
+        <!-- El contenido de la revisión se generará aquí con JavaScript -->
+    </section>
+</section>
+
+
+    </main>
+
+
+    <!-- ===== SECCIÓN DE COMPARTIR EL DASHBOARD ===== -->
+<section id="compartir-dashboard" class="py-5">
+  <div class="container">
+    <div class="bloque-compartir col-md-10 mx-auto">
+      <h4 style="color: #76ff03;">🚀 ¡Explora el Dashboard Interactivo!</h4>
+      <p class="fs-5">
+        Aquí puedes probar el dashboard que hemos creado con 
+        <strong style="color:#20c997;">Python</strong>, 
+        <strong style="color:#5DADE2;">Streamlit</strong> y 
+        <strong style="color:#ffeb3b;">Plotly</strong>. 
+        Es una herramienta educativa, visual y funcional pensada para transformar datos en decisiones.
+      </p>
+      <a href="https://tudashboard.com" target="_blank" class="boton-dashboard">🔗 Probar el Dashboard</a>
+      <p class="mt-4 fs-6" style="color:#ffffff;">
+        💡 Compartir este contenido es sembrar conocimiento. Cada vez que lo difundes, ayudas a que otros también aprendan. 
+        Eso es <strong style="color:#76ff03;">democratizar la educación</strong> y expandir el poder del aprendizaje visual. 
+        ¡Haz que el saber circule! 🌍📚
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+    
+    <footer class="footer mt-5">
+        <div class="container">
+            <p>&copy; 2025 - Creado por Ing. Juancito Peña con la asistencia de Gemini</p>
+        </div>
+    </footer>
+
+    <!-- Contenedor Oculto para Generación de Certificado -->
+    <div id="certificate-wrapper">
+        <div id="certificate">
+            <div class="cert-content">
+                <header class="cert-header">
+                    <div class="cert-title-container">
+                        <h1>Certificado de Finalización</h1>
+                        <p>Certificate of Completion</p>
+                    </div>
+                <div class="cert-logos">
+                    <img src="logos/python.png" alt="Python Logo" title="Python">
+                    <img src="logos/streamlit.png" alt="Streamlit Logo" title="Streamlit" style="height: 45px;">
+                    <img src="logos/pandas.png" alt="Pandas Logo" title="Pandas">
+                    <img src="logos/plotly.png" alt="Plotly Logo" title="Plotly" style="height: 45px;">
+                </div>
+                </header>
+
+
+
+                <main class="cert-body">
+                    <p class="cert-award-text">Este certificado se otorga a:</p>
+                    <h2 id="cert-name-display" class="cert-recipient-name"></h2>
+                    <p class="cert-course-details">
+                        Por completar exitosamente el proyecto y la evaluación de <strong>"Dashboard Interactivo de RRHH"</strong>,
+                        demostrando competencia en el ecosistema de Data Science de Python, incluyendo:
+                        <br>
+                        <span class="kw kw-python">Python</span> para lógica de negocio, <span class="kw-pandas">Pandas</span> para manipulación de datos, <span class="kw-plotly">Plotly</span> para visualización
+                        y <span class="kw-streamlit">Streamlit</span> para la creación y despliegue de la aplicación web.
+                    </p>
+                </main>
+
+
+
+
+                <footer class="cert-footer-simple">
+                    <div class="cert-signature-block">
+                        <p id="cert-author-signature">Ing. Juancito Peña</p>
+                        <span>Autor del Contenido</span>
+                    </div>
+                    <div class="cert-stats-block">
+                        <strong>Puntuación Final:</strong> <span id="cert-score-display"></span><br>
+                        <strong>Fecha de Emisión:</strong> <span id="cert-date-display"></span>
+                    </div>
+                </footer>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

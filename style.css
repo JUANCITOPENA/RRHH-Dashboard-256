@@ -1,0 +1,601 @@
+:root {
+    --cyber-green: #76ff03;
+    --cyber-yellow: #ffeb3b;
+    --dark-bg: #1a1a1a;
+    --light-text: #f0f0f0;
+    --card-bg: #2c2c2c;
+    --highlight-color: var(--cyber-green);
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    font-family: 'Roboto', sans-serif;
+}
+
+.hero {
+    background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.9)), url('https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=2070&auto=format&fit=crop') center center/cover no-repeat;
+    padding: 6rem 0;
+    text-align: center;
+    border-bottom: 3px solid var(--cyber-green);
+}
+
+.hero h1 {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 3.5rem;
+    color: var(--cyber-yellow);
+    text-shadow: 0 0 10px var(--cyber-yellow);
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Titillium Web', sans-serif;
+}
+
+h2 {
+    color: var(--cyber-green);
+    border-bottom: 2px solid var(--cyber-green);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.section {
+    padding: 4rem 0;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid #444;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(118, 255, 3, 0.3);
+}
+
+.tech-icon {
+    font-size: 4rem;
+    color: var(--cyber-green);
+}
+
+.btn-primary {
+    background-color: var(--cyber-green);
+    border-color: var(--cyber-green);
+    color: #000;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: var(--cyber-yellow);
+    border-color: var(--cyber-yellow);
+    color: #000;
+}
+
+.footer {
+    background-color: #111;
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 2px solid #333;
+}
+
+.footer a {
+    color: var(--cyber-green);
+    font-size: 1.8rem;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: var(--cyber-yellow);
+}
+
+.highlight {
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+/* Estilos del Quiz */
+#quiz-container .question {
+    font-size: 1.2rem;
+}
+
+#quiz-container .list-group-item {
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-color: #444;
+}
+
+#quiz-container .list-group-item:hover {
+    background-color: #444;
+}
+
+#quiz-container .list-group-item.selected {
+    background-color: var(--cyber-yellow);
+    color: #000;
+    border-color: var(--cyber-yellow);
+}
+
+#quiz-container .list-group-item.correct-answer {
+    background-color: #28a745 !important;
+    color: white;
+    border-color: #28a745;
+    font-weight: bold;
+}
+
+#quiz-container .list-group-item.user-incorrect {
+    background-color: #dc3545 !important;
+    color: white;
+    border-color: #dc3545;
+    font-weight: bold;
+}
+
+.disabled-answers .list-group-item {
+    pointer-events: none;
+}
+
+#timer {
+    font-size: 1.5rem;
+    color: var(--cyber-yellow);
+}
+
+/* Estilos del Certificado (Revisado y Optimizado) */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+#certificate-wrapper {
+    position: fixed;
+    left: -9999px; /* Mueve el contenedor fuera de la pantalla */
+    top: -9999px;
+    background-color: #fff;
+}
+
+#certificate {
+    width: 11in;
+    height: 8.5in;
+    color: #333; /* Color de texto oscuro para contraste */
+    background: linear-gradient(135deg, rgba(230, 245, 255, 0.95), rgba(200, 230, 255, 0.95)); /* Gradiente azul claro translúcido */
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5in;
+}
+
+#certificate::before, #certificate::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-style: solid;
+    border-color: #306998; /* Borde azul oscuro (color de kw-python) */
+}
+
+#certificate::before {
+    border-width: 1px;
+    margin: 10px;
+}
+
+#certificate::after {
+    border-width: 6px;
+    margin: 18px;
+}
+
+.cert-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    z-index: 1;
+    padding: 0.5in;
+}
+
+.cert-header .cert-title-container h1 {
+    color: #130754; /* Color de kw-pandas */
+    text-shadow: none;
+}
+
+.cert-header .cert-title-container p {
+    color: #555;
+}
+
+.cert-logos {
+    padding: 15px 0;
+    margin: 0.2in auto 0 auto;
+    width: 80%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 70%); /* Fondo difuminado blanco */
+    border-radius: 15px;
+}
+
+.cert-header .cert-logos img {
+    height: 50px;
+    filter: none; /* Quitar drop-shadow que era para fondos oscuros */
+}
+
+.cert-body .cert-recipient-name {
+    color: #306998; /* Color de kw-python */
+    text-shadow: none;
+}
+
+.cert-footer-simple {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+    padding-top: 0.5in;
+}
+
+.cert-footer-simple > div {
+    width: 45%;
+    text-align: center;
+}
+
+/* --- INICIO DE LA CORRECCIÓN DE LA FIRMA --- */
+/* Esta es la única regla que controla la firma, eliminando la duplicada */
+.cert-signature-block p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #130754; /* Color azul oscuro para alta visibilidad en fondo claro */
+    margin: 0 0 5px 0;
+}
+
+.cert-signature-block span {
+    font-size: 0.9rem;
+    color: #555;
+    border-top: 1px solid #aaa;
+    padding-top: 5px;
+    display: inline-block;
+    width: 70%;
+}
+/* --- FIN DE LA CORRECCIÓN DE LA FIRMA --- */
+
+.cert-stats-block {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.cert-stats-block strong {
+    color: #306998; /* Color de kw-python, consistente y legible */
+}
+
+/* Estilos para la revisión del quiz */
+#quiz-review-screen .card {
+    background-color: var(--card-bg);
+    border: 1px solid #555;
+}
+
+#quiz-review-screen .card-header {
+    background-color: #333;
+}
+
+#quiz-review-screen .list-group-item {
+    background-color: var(--card-bg);
+    border-color: #444;
+    color: var(--light-text);
+}
+
+#quiz-review-screen .list-group-item.user-incorrect {
+    background-color: #5d3a40 !important; /* Rojo oscuro */
+    border-color: #dc3545;
+}
+
+#quiz-review-screen .list-group-item.correct-answer {
+    background-color: #3a5941 !important; /* Verde oscuro */
+    border-color: #28a745;
+    font-weight: bold;
+}
+
+#quiz-review-screen .feedback-icon {
+    font-size: 1.2rem;
+}
+
+/* --- ESTILOS ADICIONALES PARA MEJORAR LA CLARIDAD --- */
+
+/* Resaltado de Palabras Clave */
+.kw {
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.kw-python { color: #fff; background-color: #306998; }
+.kw-streamlit { color: #fff; background-color: #FF4B4B; }
+.kw-pandas { color: #fff; background-color: #130754; }
+.kw-plotly { color: #fff; background-color: #3F4F75; }
+.kw-general { color: #000; background-color: var(--cyber-yellow); }
+.kw-path { color: #000; background-color: #90ee90; font-family: 'Courier New', Courier, monospace; padding: 2px 4px; border-radius: 3px; }
+
+/* Mejoras en Bloques de Código */
+pre[class*="language-"] {
+    position: relative;
+    margin-top: 2.5em;
+    margin-bottom: 1.5em;
+    border: 1px solid #555;
+    border-left: 10px solid var(--cyber-green);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: #2b2b2b !important; /* Un fondo ligeramente diferente al de okaidia */
+}
+
+/* Pseudo-elemento para título del lenguaje */
+pre[class*="language-bash"]::before,
+pre[class*="language-powershell"]::before,
+pre[class*="language-python"]::before,
+pre[class*="language-text"]::before {
+    content: 'Código';
+    position: absolute;
+    top: -1.5em;
+    left: -10px;
+    background-color: var(--cyber-green);
+    color: #000;
+    padding: 4px 10px;
+    font-size: 0.9em;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+}
+
+pre[class*="language-python"]::before { content: '🐍 Python'; }
+pre[class*="language-bash"]::before { content: '🐧 Terminal (Bash)'; }
+pre[class*="language-powershell"]::before { content: '💻 Terminal (PowerShell)'; }
+pre[class*="language-text"]::before { content: '📄 Archivo de Texto'; }
+
+code[class*="language-"] {
+    padding-top: 1em !important;
+}
+
+/* Iconos en listas y títulos */
+.section h2 i, .section h3 i {
+    margin-right: 12px;
+    color: var(--cyber-yellow);
+}
+
+.list-group-item i.text-success {
+    margin-right: 8px;
+}
+
+/* Estilos para la Foto de Perfil Neón */
+.profile-pic-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-pic-neon {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 4px solid #f9f871; /* Amarillo Neón Sólido */
+    position: relative;
+    z-index: 2;
+    box-shadow: 
+        0 0 10px #f9f871, /* Resplandor amarillo cercano */
+        0 0 25px #f9f871, /* Resplandor amarillo medio */
+        0 0 45px #00ff95, /* Resplandor verde externo */
+        0 0 65px #00ff95, /* Resplandor verde amplio */
+        inset 0 0 8px rgba(249, 248, 113, 0.6); /* Luz interna */
+    animation: neonPulse 2.5s infinite ease-in-out;
+}
+
+/* Animación de Latido/Pulso Neón */
+@keyframes neonPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 
+            0 0 10px #f9f871,
+            0 0 25px #f9f871,
+            0 0 45px #00ff95,
+            0 0 65px #00ff95,
+            inset 0 0 8px rgba(249, 248, 113, 0.6);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 
+            0 0 15px #f9f871,
+            0 0 35px #f9f871,
+            0 0 60px #00ff95,
+            0 0 85px #00ff95,
+            inset 0 0 10px rgba(249, 248, 113, 0.8);
+    }
+}
+
+/* Contenedor para el Snippet de Código Animado */
+.code-snippet-animated {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    width: max-content;
+    max-width: 90%;
+    margin: 2rem auto 0 auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilo para las líneas de código que se escribirán */
+.typing-line {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    color: #9CDCFE;
+    font-size: 1.1rem;
+    border-right: .15em solid #76ff03;
+    width: 0;
+}
+
+.typing-line span.comment { color: #6A9955; }
+.typing-line span.keyword { color: #C586C0; }
+.typing-line span.number { color: #B5CEA8; }
+
+#line1 {
+    animation: 
+        typing 3.0s steps(42, end) forwards,
+        blink-caret .75s step-end 4 forwards;
+    animation-fill-mode: forwards;
+    border-right-color: #76ff03;
+}
+
+#line2 {
+    animation: 
+        typing 3.5s steps(48, end) 3.1s forwards,
+        blink-caret-permanent .75s step-end infinite 3.1s;
+    animation-fill-mode: forwards;
+    border-right-color: transparent;
+}
+
+@keyframes typing {
+    from { width: 0; border-right-color: #76ff03; }
+    to { width: 100%; border-right-color: #76ff03; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #76ff03; }
+}
+
+@keyframes blink-caret-permanent {
+    from, to { border-color: transparent; }
+    50% { border-color: #76ff03; }
+}
+
+/* Botones de Redes Sociales Neón */
+.social-buttons-neon a {
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    padding: 0.6rem 1.2rem;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+}
+
+.social-buttons-neon a.linkedin:hover {
+    border-color: #0A66C2;
+    color: #0A66C2;
+    box-shadow: 0 0 15px #0A66C2, inset 0 0 5px #0A66C2;
+}
+
+.social-buttons-neon a.youtube:hover {
+    border-color: #FF0000;
+    color: #FF0000;
+    box-shadow: 0 0 15px #FF0000, inset 0 0 5px #FF0000;
+}
+
+.social-buttons-neon a.github:hover {
+    border-color: #C0C0C0;
+    color: #C0C0C0;
+    box-shadow: 0 0 15px #C0C0C0, inset 0 0 5px #C0C0C0;
+}
+
+
+@keyframes latidoNeon {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 10px #76ff03, 0 0 20px #76ff03, 0 0 30px #76ff03;
+  }
+  50% {
+    transform: scale(1.15);
+    text-shadow: 0 0 20px #76ff03, 0 0 30px #76ff03, 0 0 40px #76ff03;
+  }
+}
+
+.neon-latido {
+  color: #76ff03;
+  animation: latidoNeon 1.2s infinite ease-in-out;
+  font-weight: bold;
+  text-align: center;
+}
+
+.marco-ola {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: #0f0f0f;
+  color: #ffffff;
+  font-weight: 300;
+  animation: pulseGlow 2s infinite;
+  overflow: hidden;
+}
+
+.marco-ola::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(270deg, #76ff03, #20c997, #5DADE2, #ffeb3b, #ffffff);
+  border-radius: 14px;
+  z-index: -1;
+  animation: waveBorder 6s linear infinite;
+}
+
+@keyframes waveBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px #76ff03; }
+  50% { box-shadow: 0 0 20px #20c997; }
+}
+
+.resaltado {
+  color: #76ff03;
+  font-weight: bold;
+}
+
+.byte {
+  color: #20c997;
+  font-weight: bold;
+}
+
+.valor256 {
+  color: #ffeb3b;
+  font-weight: bold;
+}
+
+.boton-dashboard {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #76ff03, #20c997);
+  color: #0f0f0f;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 0 10px #20c997;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boton-dashboard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #76ff03;
+}
+
+.bloque-compartir {
+  border-radius: 12px;
+  padding: 1.5rem;
+  background-color: #0f0f0f;
+  color: #ffffff;
+  border: 2px solid transparent;
+  animation: olaBorde 6s linear infinite;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@keyframes olaBorde {
+  0% { border-color: #76ff03; }
+  25% { border-color: #20c997; }
+  50% { border-color: #5DADE2; }
+  75% { border-color: #ffeb3b; }
+  100% { border-color: #76ff03; }
+}
